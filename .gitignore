@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Production builds
+/dist
+/build
+
+# Agents
+CLAUDE.md
+.claude/
+
+# Docs
+TASK.md
+TODO.md

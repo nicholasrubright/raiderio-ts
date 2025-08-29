@@ -1,0 +1,40 @@
+{
+  "name": "raiderio-ts",
+  "version": "0.1.0",
+  "description": "TypeScript library for RaiderIO API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "bunchee",
+    "check": "biome check .",
+    "check:write": "biome check --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+		"wow",
+		"raiderio",
+		"api",
+		"typescript"
+	],
+  "author": "Nicholas Rubright",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.2",
+    "bunchee": "^6.6.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "ky": "^1.9.1"
+  }
+}
