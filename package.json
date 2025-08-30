@@ -15,26 +15,38 @@
     "build": "bunchee",
     "check": "biome check .",
     "check:write": "biome check --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && ava"
   },
   "files": [
     "dist"
   ],
   "keywords": [
-		"wow",
-		"raiderio",
-		"api",
-		"typescript"
-	],
+    "wow",
+    "raiderio",
+    "api",
+    "typescript"
+  ],
   "author": "Nicholas Rubright",
   "license": "MIT",
   "packageManager": "pnpm@10.15.0",
   "devDependencies": {
     "@biomejs/biome": "^2.2.2",
+    "ava": "^6.4.1",
     "bunchee": "^6.6.0",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   },
   "dependencies": {
     "ky": "^1.9.1"
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--import=tsx/esm"
+    ],
+    "workerThreads": false
   }
 }
