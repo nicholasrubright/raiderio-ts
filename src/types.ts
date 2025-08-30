@@ -1,7 +1,7 @@
 import type { CharacterProfile, Gear } from "./responses";
 
 // Generic relationship schema constraint
-export type RelationshipSchema = Record<string, any>;
+export type RelationshipSchema = Record<string, unknown>;
 
 // Generic include type that works with any relationship schema
 export type Include<TRelations extends RelationshipSchema> = {
@@ -25,12 +25,12 @@ type WithIncludes<
 >;
 
 // Entity Configuration
-interface CharacterFieldConfig {
+interface CharacterFieldConfig extends RelationshipSchema {
 	gear: Gear;
 }
 
 type CharacterInclude = Include<CharacterFieldConfig>;
-type CharacterWithIncludes<T extends CharacterInclude = {}> = WithIncludes<
+type CharacterWithIncludes<T extends CharacterInclude = Record<string, never>> = WithIncludes<
 	CharacterProfile,
 	CharacterFieldConfig,
 	T

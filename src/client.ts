@@ -86,7 +86,7 @@ export class RaiderIOClient {
 	): Promise<CharacterProfile | CharacterWithIncludes<T>> {
 		// Define base parameters
 		const baseParams = {
-			region: "us", // Default region, could be made configurable
+			region: region,
 			realm: realm,
 			name: name,
 		};
