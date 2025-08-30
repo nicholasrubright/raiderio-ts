@@ -1,6 +1,4 @@
-import type { CharacterProfile, Gear } from "./responses";
-
-// Generic relationship schema constraint
+// Generic relationship schema constraint - used by all endpoints
 export type RelationshipSchema = Record<string, unknown>;
 
 // Generic include type that works with any relationship schema
@@ -9,10 +7,10 @@ export type Include<TRelations extends RelationshipSchema> = {
 };
 
 // Official TypeScript utility for forcing type expansion in IDEs
-type Evaluate<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
+export type Evaluate<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
 
 // Generic result type that works with any base type and relationship schema
-type WithIncludes<
+export type WithIncludes<
 	TBase,
 	TRelations extends RelationshipSchema,
 	TInclude extends Include<TRelations>,
@@ -23,17 +21,3 @@ type WithIncludes<
 			: never;
 	}
 >;
-
-// Entity Configuration
-interface CharacterFieldConfig extends RelationshipSchema {
-	gear: Gear;
-}
-
-type CharacterInclude = Include<CharacterFieldConfig>;
-type CharacterWithIncludes<T extends CharacterInclude = Record<string, never>> = WithIncludes<
-	CharacterProfile,
-	CharacterFieldConfig,
-	T
->;
-
-export type { CharacterFieldConfig, CharacterWithIncludes, CharacterInclude };
