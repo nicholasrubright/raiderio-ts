@@ -25,14 +25,14 @@ console.log(character.name, character.class, character.active_spec_name);
 
 // Get character with gear data (TypeScript automatically infers the extended type)
 const characterWithGear = await client.character.getProfile('characterName', 'realmName', 'us', {
-  include: { gear: true }
+  gear: true
 });
 console.log(characterWithGear.gear.item_level_equipped); // Type-safe access to gear data
 ```
 
 ## API Reference
 
-### `client.character.getProfile(name, realm, region, options?)`
+### `client.character.getProfile(name, realm, region, include?)`
 
 Fetches a character profile from RaiderIO with optional relationship data.
 
@@ -40,8 +40,8 @@ Fetches a character profile from RaiderIO with optional relationship data.
 - `name` - Character name
 - `realm` - Server realm name  
 - `region` - Region code (e.g., 'us', 'eu')
-- `options.include` - Object specifying which relationships to include
-  - `options.include.gear` - Include gear data (boolean)
+- `include` - Object specifying which relationships to include
+  - `include.gear` - Include gear data (boolean)
 
 **Returns:** 
 - `CharacterProfile` - Base character profile
@@ -65,7 +65,7 @@ const character: CharacterProfile = await client.character.getProfile('name', 'r
 
 // When including gear, TypeScript automatically infers the extended type
 const characterWithGear = await client.character.getProfile('name', 'realm', 'us', { 
-  include: { gear: true } 
+  gear: true 
 });
 // characterWithGear.gear is typed as Gear
 ```

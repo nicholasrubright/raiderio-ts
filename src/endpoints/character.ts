@@ -17,13 +17,13 @@ export class CharacterEndpoint extends BaseEndpoint {
 		name: string,
 		realm: string,
 		region: string,
-		options: { include: T },
+		include: T,
 	): Promise<CharacterWithIncludes<T>>;
 	async getProfile<T extends CharacterInclude>(
 		name: string,
 		realm: string,
 		region: string,
-		options?: { include?: T },
+		include?: T,
 	): Promise<CharacterProfile | CharacterWithIncludes<T>> {
 		const baseParams = {
 			region: region,
@@ -35,7 +35,7 @@ export class CharacterEndpoint extends BaseEndpoint {
 			gear: {} as Gear,
 		};
 
-		const searchParams = this.createSearchParams(baseParams, characterRelations, options);
+		const searchParams = this.createSearchParams(baseParams, characterRelations, include);
 
 		return this.fetch<CharacterProfile | CharacterWithIncludes<T>>(
 			"characters/profile",

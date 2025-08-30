@@ -28,12 +28,12 @@ export abstract class BaseEndpoint {
 	>(
 		baseParams: Record<string, string | number | boolean>,
 		relationshipMap: TRelations,
-		options?: { include?: TInclude },
+		include?: TInclude,
 	): Record<string, string | number | boolean> {
 		const searchParams = { ...baseParams };
 
-		if (options?.include) {
-			const fields = Object.entries(options.include)
+		if (include) {
+			const fields = Object.entries(include)
 				.filter(([key, shouldInclude]) => shouldInclude && key in relationshipMap)
 				.map(([key, _]) => key)
 				.join(",");
